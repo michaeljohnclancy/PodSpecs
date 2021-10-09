@@ -11,7 +11,7 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => '3-clause BSD', :file => 'LICENSE' }
   s.author           = { 'Dal Rupnik' => 'legoless@gmail.com' }
-  s.source           = { :git => 'https://github.com/legoless/legocv.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/michaeljohnclancy/legocv.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/thelegoless'
 
   s.ios.deployment_target = '14.1'
