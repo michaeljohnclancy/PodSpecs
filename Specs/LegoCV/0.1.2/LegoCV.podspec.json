@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/michaeljohnclancy/legocv.git",
-    "tag": "master"
+    "tag": "0.1.2"
   },
   "social_media_url": "https://twitter.com/thelegoless",
   "platforms": {
