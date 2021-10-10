@@ -11,7 +11,7 @@ OpenCV: open source computer vision library
     Dev zone: http://code.opencv.org
     DESC
 
-    s.homepage         = 'https://github.com/legoless/opencv-dynamic'
+    s.homepage         = 'https://github.com/michaeljohnclancy/opencv-dynamic'
     s.license          = { :type => '3-clause BSD', :file => 'LICENSE' }
     s.authors          = 'opencv.org'
     s.source           = { :git => 'https://github.com/michaeljohnclancy/opencv-dynamic.git', :tag => s.version.to_s }
