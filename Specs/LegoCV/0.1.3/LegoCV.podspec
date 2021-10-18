@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 LegoCV is native OpenCV framework built for Swift and Objective-C projects. It eliminates the need to use Objective-C++ and allows for full compatibility with native Swift projects. The only dependency is native OpenCV framework for iOS.
                        DESC
 
-  s.homepage         = 'https://github.com/legoless/legocv'
+  s.homepage         = 'https://github.com/michaeljohnclancy/legocv'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => '3-clause BSD', :file => 'LICENSE' }
   s.author           = { 'Dal Rupnik' => 'legoless@gmail.com' }
@@ -18,14 +18,14 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
 
   s.public_header_files = 'LegoCV/LegoCV/LegoCV.h'
   s.source_files = 'LegoCV/LegoCV/LegoCV.h'
-  
+
   s.subspec 'OpenCV' do |subspec|
-    s.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
-    s.preserve_paths = "opencv2.framework"
-    s.vendored_frameworks = "opencv2.framework"
-    s.requires_arc = false
-    s.libraries = [ 'stdc++' ]
-    s.frameworks = [
+    subspec.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
+    subspec.preserve_paths = "opencv2.framework"
+    subspec.vendored_frameworks = "opencv2.framework"
+    subspec.requires_arc = false
+    subspec.libraries = [ 'stdc++' ]
+    subspec.frameworks = [
         "Accelerate",
         "AssetsLibrary",
         "AVFoundation",
@@ -38,14 +38,8 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
         "UIKit"
     ]
 
-    s.prepare_command = <<-CMD
-        git submodule init
-        git submodule update
-        /usr/bin/python opencv/platforms/ios/build_framework.py ios --dynamic
-        cp -a ./ios/opencv2.framework ./opencv2.framework
-    CMD
   end
-    
+
   s.frameworks = ["UIKit"]
 
   s.subspec 'Core' do |subspec|
@@ -61,4 +55,11 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
     subspec.source_files = 'LegoCV/LegoCV/Wrapper/ImageProcessing/**/*.{h,m,mm}'
     subspec.dependency 'LegoCV/Core'
   end
+
+  s.prepare_command = <<-CMD
+      git submodule init
+      git submodule update
+      /usr/bin/python opencv/platforms/ios/build_framework.py ios --dynamic
+      cp -a ./ios/opencv2.framework ./opencv2.framework
+  CMD
 end
