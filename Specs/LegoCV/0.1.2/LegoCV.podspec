@@ -18,11 +18,41 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
 
   s.public_header_files = 'LegoCV/LegoCV/LegoCV.h'
   s.source_files = 'LegoCV/LegoCV/LegoCV.h'
+  
+  s.subspec 'OpenCV-Dynamic' do |subspec|
+    s.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
+    s.preserve_paths = "opencv2.framework"
+    s.vendored_frameworks = "opencv2.framework"
+    s.requires_arc = false
+    s.libraries = [ 'stdc++' ]
+    s.frameworks = [
+        "Accelerate",
+        "AssetsLibrary",
+        "AVFoundation",
+        "CoreGraphics",
+        "CoreImage",
+        "CoreMedia",
+        "CoreVideo",
+        "Foundation",
+        "QuartzCore",
+        "UIKit"
+    ]
+
+    s.prepare_command = <<-CMD
+        git submodule init
+        git submodule update
+        /usr/bin/python opencv/platforms/ios/build_framework.py ios --dynamic
+        cp -a ./ios/opencv2.framework ./opencv2.framework
+    CMD
+  end
+    
+  s.frameworks = ["UIKit"]
 
   s.subspec 'Core' do |subspec|
     subspec.public_header_files = 'LegoCV/LegoCV/Wrapper/Core/**/*.h', 'LegoCV/LegoCV/Wrapper/Utilities/**/*.h', 
     subspec.private_header_files = 'LegoCV/LegoCV/Wrapper/Core/Private/*.h'
     subspec.source_files = 'LegoCV/LegoCV/Wrapper/Core/**/*.{h,m,mm}', 'LegoCV/LegoCV/Wrapper/Utilities/**/*.{h,m,mm}'
+    subspec.dependency 'OpenCV-Dynamic'
   end
 
   s.subspec 'ImageProcessing' do |subspec|
@@ -31,28 +61,4 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
     subspec.source_files = 'LegoCV/LegoCV/Wrapper/ImageProcessing/**/*.{h,m,mm}'
     subspec.dependency 'LegoCV/Core'
   end
-  
-  s.preserve_paths = "opencv2.framework"
-  s.vendored_frameworks = "opencv2.framework"
-  s.requires_arc = false
-  s.libraries = [ 'stdc++' ]
-  s.frameworks = [
-      "Accelerate",
-      "AssetsLibrary",
-      "AVFoundation",
-      "CoreGraphics",
-      "CoreImage",
-      "CoreMedia",
-      "CoreVideo",
-      "Foundation",
-      "QuartzCore",
-      "UIKit"
-  ]
-
-  s.prepare_command = <<-CMD
-      git submodule init
-      git submodule update
-      /usr/bin/python opencv/platforms/ios/build_framework.py ios --dynamic
-      cp -a ./ios/opencv2.framework ./opencv2.framework
-  CMD
 end
