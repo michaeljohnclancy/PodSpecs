@@ -18,11 +18,13 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
 
   s.public_header_files = 'LegoCV/LegoCV/LegoCV.h'
   s.source_files = 'LegoCV/LegoCV/LegoCV.h'
+  
+  s.frameworks = ["UIKit"]
+  s.preserve_paths = "opencv2.framework"
+  s.vendored_frameworks = "opencv2.framework"
 
   s.subspec 'OpenCV' do |subspec|
     subspec.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
-    subspec.preserve_paths = "opencv2.framework"
-    subspec.vendored_frameworks = "opencv2.framework"
     subspec.requires_arc = false
     subspec.libraries = [ 'stdc++' ]
     subspec.frameworks = [
@@ -39,8 +41,6 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
     ]
 
   end
-
-  s.frameworks = ["UIKit"]
 
   s.subspec 'Core' do |subspec|
     subspec.public_header_files = 'LegoCV/LegoCV/Wrapper/Core/**/*.h', 'LegoCV/LegoCV/Wrapper/Utilities/**/*.h', 
