@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'OpenCV-Dynamic'
-    s.version          = '4.5.3'
+    s.version          = '4.5.4'
     s.summary          = 'OpenCV (Computer Vision) for iOS as a dynamic framework.'
 
     s.description      = <<-DESC
@@ -11,17 +11,14 @@ OpenCV: open source computer vision library
     Dev zone: http://code.opencv.org
     DESC
 
-    s.homepage         = 'https://github.com/michaeljohnclancy/opencv-dynamic'
+    s.homepage         = 'https://github.com/opencv/opencv'
     s.license          = { :type => '3-clause BSD', :file => 'LICENSE' }
     s.authors          = 'opencv.org'
-    s.source           = { :git => 'https://github.com/michaeljohnclancy/opencv-dynamic.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/opencv/opencv.git', :tag => s.version.to_s }
 
     s.ios.deployment_target = "14.1"
     s.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
-    #s.public_header_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
     s.preserve_paths = "opencv2.framework"
-    #s.header_dir = "opencv2"
-    #s.header_mappings_dir = "opencv2.framework/Versions/A/Headers/"
     s.vendored_frameworks = "opencv2.framework"
     s.requires_arc = false
     s.libraries = [ 'stdc++' ]
