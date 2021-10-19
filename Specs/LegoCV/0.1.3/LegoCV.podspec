@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 LegoCV is native OpenCV framework built for Swift and Objective-C projects. It eliminates the need to use Objective-C++ and allows for full compatibility with native Swift projects. The only dependency is native OpenCV framework for iOS.
                        DESC
 
-  s.homepage         = 'https://github.com/michaeljohnclancy/legocv'
+  s.homepage         = 'https://github.com/michaeljohnclancy/LegoCV'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => '3-clause BSD', :file => 'LICENSE' }
   s.author           = { 'Dal Rupnik' => 'legoless@gmail.com' }
@@ -21,39 +21,11 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
   
   s.frameworks = ["UIKit"]
   
-  s.prepare_command = <<-CMD
-      git submodule init
-      git submodule update
-      /usr/bin/python opencv/platforms/ios/build_framework.py ios --dynamic
-      cp -a ./ios/opencv2.framework ./opencv2.framework
-  CMD
-  
-  s.preserve_paths = "opencv2.framework"
-  s.vendored_frameworks = "opencv2.framework"
-
-  s.subspec 'OpenCV' do |subspec|
-    subspec.source_files = "opencv2.framework/Headers/**/*{.h,.hpp}"
-    subspec.requires_arc = false
-    subspec.libraries = [ 'stdc++' ]
-    subspec.frameworks = [
-        "Accelerate",
-        "AssetsLibrary",
-        "AVFoundation",
-        "CoreGraphics",
-        "CoreImage",
-        "CoreMedia",
-        "CoreVideo",
-        "Foundation",
-        "QuartzCore",
-        "UIKit"
-    ]
-  end
-
   s.subspec 'Core' do |subspec|
     subspec.public_header_files = 'LegoCV/LegoCV/Wrapper/Core/**/*.h', 'LegoCV/LegoCV/Wrapper/Utilities/**/*.h', 
     subspec.private_header_files = 'LegoCV/LegoCV/Wrapper/Core/Private/*.h'
     subspec.source_files = 'LegoCV/LegoCV/Wrapper/Core/**/*.{h,m,mm}', 'LegoCV/LegoCV/Wrapper/Utilities/**/*.{h,m,mm}'
-    subspec.dependency 'OpenCV'
+    subspec.dependency 'OpenCV-Dynamic'
   end
 
   s.subspec 'ImageProcessing' do |subspec|
