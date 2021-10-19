@@ -21,6 +21,8 @@ LegoCV is native OpenCV framework built for Swift and Objective-C projects. It e
   
   s.frameworks = ["UIKit"]
   
+  s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
+  
   s.subspec 'Core' do |subspec|
     subspec.public_header_files = 'LegoCV/LegoCV/Wrapper/Core/**/*.h', 'LegoCV/LegoCV/Wrapper/Utilities/**/*.h', 
     subspec.private_header_files = 'LegoCV/LegoCV/Wrapper/Core/Private/*.h'
