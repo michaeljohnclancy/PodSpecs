@@ -35,10 +35,6 @@ OpenCV: open source computer vision library
         "UIKit"
     ]
     
-    s.pod_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
-    s.user_target_xcconfig = { 'ONLY_ACTIVE_ARCH' => 'YES' }
-  
-
     s.prepare_command = <<-CMD
         /usr/bin/python platforms/ios/build_framework.py ios --dynamic
         cp -a ./ios/opencv2.framework ./opencv2.framework
